@@ -1,0 +1,33 @@
+<table class="table no-bg">
+    <tr>
+        <td rowspan="2">
+            ID: {{company.id}}
+            <input type="hidden" name="id" value="{{company.id}}">
+        </td>
+        <td>Company:</td>
+        <td>
+            <input class="form-control" type="text" name="company" class="w100" ng-model="company.companyName">
+        </td>
+        <td>Industry: </td>
+        <td>
+            <input class="form-control" type="text" name="industry" class="w180" ng-model="company.industry">
+        </td>
+    </tr>
+    <tr>
+        <td>Enroll Date:</td>
+        <td>
+            <input class="form-control" type="text" name="joinDate" class="w100" ng-model="company.joinDate">
+        </td>
+        <td>End Date: </td>
+        <td>
+            <input class="form-control" type="text" name="endDate" class="w120" ng-model="company.endDate">
+        </td>
+        <td colspan="2">
+            <div class="pull-right">
+                <input type="button" class="btn btn-primary btn-sm margin-right-15" value=" save " ng-click="saveCompanyInfo(company.id)">
+                <input type="button" class="btn btn-primary btn-sm" value=" cancel" ng-click="setEditId(-1)">
+            </div>
+        </td>
+    </tr>
+</table>
+<!--  class="editRowTd" -->
