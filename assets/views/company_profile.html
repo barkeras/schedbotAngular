@@ -5,12 +5,12 @@
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
 <!-- end: BREADCRUMB -->
-<!-- start: USER PROFILE -->
+<!-- start: COMPANY PROFILE -->
 <div class="container-fluid container-fullw bg-white">
     <div class="row">
         <div class="col-md-12">
             <div ng-controller="CompanyProfileCtrl">
-                <!-- start: USER TABSET -->
+                <!-- start: COMPANY TABSET -->
                 <uib-tabset class="tabbable">
                     <!-- start: TAB OVERVIEW -->
                     <uib-tab heading="Overview" ui-sref="app.admin.companies.companyprofile">
@@ -131,7 +131,7 @@
                             <div class="col-md-8">
                                 <div class="row space20">
                                     <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" uib-tooltip="Locations for {{companyInfo.companyName}}">
+                                        <button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" uib-tooltip="Locations for {{companyInfo.companyName}}" ui-sref="app.admin.companies.companyprofile.locations" ng-click="locationBtnClicked()">
                                             <i class="ti-location-pin block text-primary text-extra-large margin-bottom-10"></i>
                                             Locations
                                         </button>
@@ -470,14 +470,29 @@
                     </uib-tab>
                     <!-- end: TAB EDIT COMPANY -->
                     <!-- start: TAB LOCATIONS -->
-                    <uib-tab heading="Locations" ui-sref="app.admin.companies.companyprofile.locations">
+                    <uib-tab heading="Locations" ui-sref="app.admin.companies.companyprofile.locations" active="currentScreen">
                         <div ui-view></div>
                     </uib-tab>
                     <!-- end: TAB LOCATIONS -->
+                    <!-- start: TAB MESSAGES -->
+                    <uib-tab heading="Messages" ui-sref="app.admin.companies.companyprofile.messages" active="currentScreen">
+                        <div ui-view></div>
+                    </uib-tab>
+                    <!-- end: TAB MESSAGES -->
+                    <!-- start: TAB CALENDAR -->
+                    <uib-tab heading="Calendar" ui-sref="app.admin.companies.companyprofile.calendar" active="currentScreen">
+                        <div ui-view></div>
+                    </uib-tab>
+                    <!-- end: TAB CALENDAR -->
+                    <!-- start: TAB SUPPORT TICKETS -->
+                    <uib-tab heading="Support Tickets" ui-sref="app.admin.companies.companyprofile.supporttickets" active="currentScreen">
+                        <div ui-view></div>
+                    </uib-tab>
+                    <!-- end: TAB SUPPORT TICKETS -->
                 </uib-tabset>
-                <!-- end: USER TABSET -->
+                <!-- end: COMPANY TABSET -->
             </div>
         </div>
     </div>
 </div>
-<!-- end: USER PROFILE -->
+<!-- end: COMPANY PROFILE -->

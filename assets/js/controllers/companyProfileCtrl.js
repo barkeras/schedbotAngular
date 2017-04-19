@@ -8,6 +8,11 @@ app.controller('CompanyProfileCtrl', ["$scope", "flowFactory", function ($scope,
     };
     $scope.obj = new Flow();
     
+    $scope.locationBtnClicked = function (){
+        $scope.currentScreen = true;
+        console.info("currentScreen: ", $scope.currentScreen);
+    }
+    
     $scope.companyInfo = {
         "id": 1,
         "companyName": "Chipotle Mexican Grill",

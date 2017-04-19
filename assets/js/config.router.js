@@ -521,6 +521,30 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Locations'
         },
         resolve: loadSequence('ngTable', 'companyLocationsCtrl')
+    }).state('app.admin.companies.companyprofile.messages', {
+        url: '/messages',
+        templateUrl: "assets/views/company_messages.html",
+        title: 'Messages',
+        ncyBreadcrumb: {
+            label: 'Messages'
+        },
+        resolve: loadSequence('inboxCtrl')
+    }).state('app.admin.companies.companyprofile.calendar', {
+        url: '/calendar',
+        templateUrl: "assets/views/company_calendar.html",
+        title: 'Calendar',
+        ncyBreadcrumb: {
+            label: 'Calendar'
+        },
+        resolve: loadSequence('mwl.calendar', 'calendarCtrl')
+    }).state('app.admin.companies.companyprofile.supporttickets', {
+        url: '/support-tickets',
+        templateUrl: "assets/views/company_locations.html",
+        title: 'Support Tickets',
+        ncyBreadcrumb: {
+            label: 'Support Tickets'
+        },
+        resolve: loadSequence('ngTable', 'companyLocationsCtrl')
     })
     
     
