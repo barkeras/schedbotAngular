@@ -23,9 +23,16 @@ app.controller('CompanyProfileCtrl', ["$scope", "flowFactory", function ($scope,
         "logo": "assets/images/chipotleLogo.jpg",
         twitter: 'https://twitter.com/ChipotleTweets',
         facebook: 'https://www.facebook.com/chipotle/',
-        email: null
+        email: null,
+        messages: {
+            "number": '23'
+        },
+        supportTickets: {
+            openTickets: '5'
+        }
         
     }
+    
 
     $scope.userInfo = {
         firstName: 'Andrew',
@@ -44,7 +51,7 @@ app.controller('CompanyProfileCtrl', ["$scope", "flowFactory", function ($scope,
         google: '',
         skype: 'AndrewBarker82'
     };
-    if ($scope.userInfo.avatar == '') {
+    if ($scope.companyInfo.logo == '') {
         $scope.noImage = true;
     }
 }]);

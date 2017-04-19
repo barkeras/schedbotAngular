@@ -58,6 +58,7 @@ app.constant('JS_REQUIRES', {
         'crop2Ctrl': 'assets/js/controllers/crop2Ctrl.js',
         'companiesCtrl': 'assets/js/controllers/companiesCtrl.js',
         'companyProfileCtrl': 'assets/js/controllers/companyProfileCtrl.js',
+        'companyLocationsCtrl': 'assets/js/controllers/companyLocationsCtrl.js',
     },
     //*** angularJS Modules
     modules: [{

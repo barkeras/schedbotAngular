@@ -13,7 +13,7 @@
                 <!-- start: USER TABSET -->
                 <uib-tabset class="tabbable">
                     <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Overview">
+                    <uib-tab heading="Overview" ui-sref="app.admin.companies.companyprofile">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="user-left">
@@ -123,7 +123,7 @@
                                     </table>
                                     <div class="text-right">
                                         <a class="btn btn-primary btn-o btn-wide" href="#" ng-click="editActive = true">
-                                            Edit Account
+                                            Edit Company
                                         </a>
                                     </div>
                                 </div>
@@ -131,27 +131,27 @@
                             <div class="col-md-8">
                                 <div class="row space20">
                                     <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block">
-                                            <i class="ti-layers-alt block text-primary text-extra-large margin-bottom-10"></i>
-                                            Projects
+                                        <button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" uib-tooltip="Locations for {{companyInfo.companyName}}">
+                                            <i class="ti-location-pin block text-primary text-extra-large margin-bottom-10"></i>
+                                            Locations
                                         </button>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 btn-block">
+                                        <button class="btn btn-icon margin-bottom-5 btn-block" uib-tooltip="{{companyInfo.messages.number}} unread messages">
                                             <i class="ti-comments block text-primary text-extra-large margin-bottom-10"></i>
-                                            Messages <span class="badge badge-danger"> 23 </span>
+                                            Messages <span class="badge badge-default"> {{companyInfo.messages.number}} </span>
                                         </button>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 btn-block">
+                                        <button class="btn btn-icon margin-bottom-5 btn-block" uib-tooltip="Meetings with Sched-Bot and {{companyInfo.companyName}}">
                                             <i class="ti-calendar block text-primary text-extra-large margin-bottom-10"></i>
                                             Calendar
                                         </button>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 btn-block">
-                                            <i class="ti-flag block text-primary text-extra-large margin-bottom-10"></i>
-                                            Notifications
+                                        <button class="btn btn-icon margin-bottom-5 btn-block" uib-tooltip="{{companyInfo.supportTickets.openTickets}} open support tickets">
+                                            <i class="ti-ticket block text-primary text-extra-large margin-bottom-10"></i>
+                                            Support Tickets <span class="badge badge-danger"> {{companyInfo.supportTickets.openTickets}} </span>
                                         </button>
                                     </div>
                                 </div>
@@ -259,77 +259,86 @@
                         </div>
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
-                    <!-- start: TAB EDIT ACCOUNT -->
-                    <uib-tab heading="Edit Account" active="editActive">
+                    <!-- start: TAB EDIT COMPANY -->
+                    <uib-tab heading="Edit Company" active="editActive" ui-sref="app.admin.companies.companyprofile">
                         <form action="#" role="form" id="form">
                             <fieldset>
                                 <legend>
-                                    Account Info
+                                    Company Info
                                 </legend>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                First Name
+                                                Company Name
                                             </label>
-                                            <input type="text" placeholder="Enter your first name" class="form-control" name="firstname" ng-model="userInfo.firstName">
+                                            <input type="text" placeholder="Enter your company name" class="form-control" name="companyName" ng-model="companyInfo.companyName">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Last Name
+                                                Industry
                                             </label>
-                                            <input type="text" placeholder="Enter your last name" class="form-control" name="lastname" ng-model="userInfo.lastName">
+                                            <input type="text" placeholder="Enter your industry" class="form-control" name="industry" ng-model="companyInfo.industry">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Email Address
                                             </label>
-                                            <input type="email" placeholder="email address" class="form-control" name="email" ng-model="userInfo.email">
+                                            <input type="email" placeholder="Enter corporate email address" class="form-control" name="email" ng-model="companyInfo.email">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Phone
                                             </label>
-                                            <input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="userInfo.phone">
+                                            <input type="text" placeholder="Enter corporate phone number" class="form-control" name="phone" ng-model="companyInfo.phone">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Url
                                             </label>
-                                            <input type="text" placeholder="Enter Url" class="form-control" name="url" ng-model="userInfo.url">
+                                            <input type="text" placeholder="Enter Url" class="form-control" name="url" ng-model="companyInfo.url">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="block">
-                                                Gender
-                                            </label>
-                                            <div class="clip-radio radio-primary">
-                                                <input type="radio" id="us-female" name="gender" value="female" ng-model="userInfo.gender">
-                                                <label for="us-female">
-                                                    Female
-                                                </label>
-                                                <input type="radio" id="us-male" name="gender" value="male" ng-model="userInfo.gender">
-                                                <label for="us-male">
-                                                    Male
-                                                </label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="block">
+                                                        Join Date
+                                                    </label>
+                                                    <input class="form-control" placeholder="enter start date" type="text" name="joinDate" ng-model="companyInfo.joinDate" ng-disabled="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="block">
+                                                        End Date
+                                                    </label>
+                                                    <input class="form-control" placeholder="enter end date" type="text" name="endDate" ng-model="companyInfo.endDate">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">
-                                                        Zip Code
+                                                        Facebook
                                                     </label>
-                                                    <input class="form-control" placeholder="enter a zip code" type="text" name="zipcode" ng-model="userInfo.zipCode">
+                                                    <span class="input-icon">
+                                                <input class="form-control" type="text" placeholder="Facebook" name="facebook" ng-model="companyInfo.facebook">
+                                                <i class="fa fa-facebook"></i>
+                                            </span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">
-                                                        City
+                                                        Twitter
                                                     </label>
-                                                    <input class="form-control" placeholder="enter your city" type="text" name="city" ng-model="userInfo.city">
+                                                    <span class="input-icon">
+                                                <input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="companyInfo.twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +350,7 @@
                                                 <div class="user-image">
                                                     <div class="thumbnail margin-bottom-5">
                                                         <img src="assets/images/default-user.png" alt="" ng-if="!obj.flow.files.length && noImage">
-                                                        <img ng-src="{{userInfo.avatar}}" alt="" ng-if="!obj.flow.files.length && !noImage">
+                                                        <img ng-src="{{companyInfo.logo}}" alt="" ng-if="!obj.flow.files.length && !noImage">
                                                         <img flow-img="obj.flow.files[0]" ng-if="obj.flow.files.length">
                                                     </div>
                                                 </div>
@@ -366,167 +375,105 @@
                             </fieldset>
                             <fieldset>
                                 <legend>
-                                    Additional Info
+                                    Headquarters Info
                                 </legend>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Twitter
+                                                Street Address
                                             </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="userInfo.twitter">
-                                                <i class="fa fa-twitter"></i>
-                                            </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Facebook
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Facebook" name="facebook" ng-model="userInfo.facebook">
-                                                <i class="fa fa-facebook"></i>
-                                            </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Google Plus
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Google Plus" name="google" ng-model="userInfo.google">
-                                                <i class="fa fa-google-plus"></i>
-                                            </span>
+                                                <input class="form-control" type="text" placeholder="Enter Headquarters Street Address" name="streetAddress" ng-model="companyInfo.hqAddressStreet">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Github
+                                                City
                                             </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Github" name="github" ng-model="userInfo.github">
-                                                <i class="fa fa-github"></i>
-                                            </span>
+                                                <input class="form-control" type="text" placeholder="Enter Headquarters Street Address" name="streetAddress" ng-model="companyInfo.hqAddressCity">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Linkedin
+                                                State
                                             </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Linkedin" name="linkedin" ng-model="userInfo.linkedin">
-                                                <i class="fa fa-linkedin"></i>
-                                            </span>
+                                                <select class="form-control" placeholder="Select Headquarters State" name="state" ng-model="companyInfo.hqAddressState">
+	<option value="AL">Alabama</option>
+	<option value="AK">Alaska</option>
+	<option value="AZ">Arizona</option>
+	<option value="AR">Arkansas</option>
+	<option value="CA">California</option>
+	<option value="CO">Colorado</option>
+	<option value="CT">Connecticut</option>
+	<option value="DE">Delaware</option>
+	<option value="DC">District Of Columbia</option>
+	<option value="FL">Florida</option>
+	<option value="GA">Georgia</option>
+	<option value="HI">Hawaii</option>
+	<option value="ID">Idaho</option>
+	<option value="IL">Illinois</option>
+	<option value="IN">Indiana</option>
+	<option value="IA">Iowa</option>
+	<option value="KS">Kansas</option>
+	<option value="KY">Kentucky</option>
+	<option value="LA">Louisiana</option>
+	<option value="ME">Maine</option>
+	<option value="MD">Maryland</option>
+	<option value="MA">Massachusetts</option>
+	<option value="MI">Michigan</option>
+	<option value="MN">Minnesota</option>
+	<option value="MS">Mississippi</option>
+	<option value="MO">Missouri</option>
+	<option value="MT">Montana</option>
+	<option value="NE">Nebraska</option>
+	<option value="NV">Nevada</option>
+	<option value="NH">New Hampshire</option>
+	<option value="NJ">New Jersey</option>
+	<option value="NM">New Mexico</option>
+	<option value="NY">New York</option>
+	<option value="NC">North Carolina</option>
+	<option value="ND">North Dakota</option>
+	<option value="OH">Ohio</option>
+	<option value="OK">Oklahoma</option>
+	<option value="OR">Oregon</option>
+	<option value="PA">Pennsylvania</option>
+	<option value="RI">Rhode Island</option>
+	<option value="SC">South Carolina</option>
+	<option value="SD">South Dakota</option>
+	<option value="TN">Tennessee</option>
+	<option value="TX">Texas</option>
+	<option value="UT">Utah</option>
+	<option value="VT">Vermont</option>
+	<option value="VA">Virginia</option>
+	<option value="WA">Washington</option>
+	<option value="WV">West Virginia</option>
+	<option value="WI">Wisconsin</option>
+	<option value="WY">Wyoming</option>
+</select>
                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Skype
+                                                Zip Code
                                             </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Skype" name="skype" ng-model="userInfo.skype">
-                                                <i class="fa fa-skype"></i>
-                                            </span>
+                                                <input class="form-control" type="text" placeholder="Enter Headquarters Street Address" name="streetAddress" ng-model="companyInfo.hqAddressZip" maxlength="5" ng-maxlength="5">
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
                         </form>
                     </uib-tab>
-                    <!-- end: TAB EDIT ACCOUNT -->
-                    <!-- start: TAB PROJECTS -->
-                    <uib-tab heading="Projects">
-                        <table class="table" id="projects">
-                            <thead>
-                                <tr>
-                                    <th>Project Name</th>
-                                    <th class="hidden-xs">Client</th>
-                                    <th>Proj Comp</th>
-                                    <th class="hidden-xs">%Comp</th>
-                                    <th class="hidden-xs center">Priority</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>IT Help Desk</td>
-                                    <td class="hidden-xs">Master Company</td>
-                                    <td>11 november 2014</td>
-                                    <td class="hidden-xs">
-                                        <div class="progress active progress-xs">
-                                            <div style="width: 70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar" class="progress-bar progress-bar-warning">
-                                                <span class="sr-only"> 70% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
-                                </tr>
-                                <tr>
-                                    <td>PM New Product Dev</td>
-                                    <td class="hidden-xs">Brand Company</td>
-                                    <td>12 june 2014</td>
-                                    <td class="hidden-xs">
-                                        <div class="progress active progress-xs">
-                                            <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info">
-                                                <span class="sr-only"> 40% Complete</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="center hidden-xs"><span class="label label-warning">High</span></td>
-                                </tr>
-                                <tr>
-                                    <td>ClipTheme Web Site</td>
-                                    <td class="hidden-xs">Internal</td>
-                                    <td>11 november 2014</td>
-                                    <td class="hidden-xs">
-                                        <div class="progress active progress-xs">
-                                            <div style="width: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" class="progress-bar progress-bar-success">
-                                                <span class="sr-only"> 90% Complete</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Local Ad</td>
-                                    <td class="hidden-xs">UI Fab</td>
-                                    <td>15 april 2014</td>
-                                    <td class="hidden-xs">
-                                        <div class="progress active progress-xs">
-                                            <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" class="progress-bar progress-bar-warning">
-                                                <span class="sr-only"> 50% Complete</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Design new theme</td>
-                                    <td class="hidden-xs">Internal</td>
-                                    <td>2 october 2014</td>
-                                    <td class="hidden-xs">
-                                        <div class="progress active progress-xs">
-                                            <div style="width: 20%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-success">
-                                                <span class="sr-only"> 20% Complete (warning)</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
-                                </tr>
-                                <tr>
-                                    <td>IT Help Desk</td>
-                                    <td class="hidden-xs">Designer TM</td>
-                                    <td>6 december 2014</td>
-                                    <td class="hidden-xs">
-                                        <div class="progress active progress-xs">
-                                            <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
-                                                <span class="sr-only"> 40% Complete (warning)</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="center hidden-xs"><span class="label label-warning">High</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- end: TAB EDIT COMPANY -->
+                    <!-- start: TAB LOCATIONS -->
+                    <uib-tab heading="Locations" ui-sref="app.admin.companies.companyprofile.locations">
+                        <div ui-view></div>
                     </uib-tab>
-                    <!-- end: TAB PROJECTS -->
+                    <!-- end: TAB LOCATIONS -->
                 </uib-tabset>
                 <!-- end: USER TABSET -->
             </div>

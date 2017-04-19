@@ -491,14 +491,21 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Admin'
         }
     }).state('app.admin.companies', {
-        url: "/companies",
-        templateUrl: "assets/views/companies.html",
-        resolve: loadSequence('ngTable', 'companiesCtrl'),
-        title: 'Comapnies',
+        url: '/companies',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Companies',
         ncyBreadcrumb: {
             label: 'Companies'
         }
-    }).state('app.admin.companyprofile', {
+    }).state('app.admin.companies.browse', {
+        url: "/browse",
+        templateUrl: "assets/views/companies.html",
+        resolve: loadSequence('ngTable', 'companiesCtrl'),
+        title: 'Browse',
+        ncyBreadcrumb: {
+            label: 'Browse'
+        },
+    }).state('app.admin.companies.companyprofile', {
         url: '/company-profile',
         templateUrl: "assets/views/company_profile.html",
         title: 'Company Profile',
@@ -506,6 +513,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Company Profile'
         },
         resolve: loadSequence('flow', 'companyProfileCtrl')
+    }).state('app.admin.companies.companyprofile.locations', {
+        url: '/locations',
+        templateUrl: "assets/views/company_locations.html",
+        title: 'Locations',
+        ncyBreadcrumb: {
+            label: 'Locations'
+        },
+        resolve: loadSequence('ngTable', 'companyLocationsCtrl')
     })
     
     

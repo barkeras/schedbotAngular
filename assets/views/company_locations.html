@@ -1,22 +1,12 @@
-<!-- start: BREADCRUMB -->
-<div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin" >Companies</h4>
-
-    <div ncy-breadcrumb class="pull-right"></div>
-</div>
-<!-- end: BREADCRUMB -->
 <!-- start: YOUR CONTENT HERE -->
 
 
 
 <!-- start: INLINE EDIT EXAMPLE -->
-<div class="container-fluid container-fullw">
+<div class="container-fluid container-fullw padding-top-0">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-white">
-                <div class="panel-body">
-                    <h5 class="over-title margin-bottom-15"><span class="text-bold">Enrolled Companies</span></h5>
-                    <div ng-controller="CompaniesCtrl">
+                    <div ng-controller="CompanyLocationsCtrl">
                         <div class="row margin-bottom-10">
                             <div class="col-md-12">
                                 <button ng-click="tableParams.sorting({})" class="btn btn-o btn-default pull-right">
@@ -27,14 +17,15 @@
 <!--                        <strong>Sorting:</strong> {{tableParams.sorting()|json}}-->
                         <div class="table-responsive">
                             <table ng-table="tableParams" class="table">
-                                <tbody ng-repeat="company in $data">
+                                <tbody ng-repeat="location in $data">
                                     <tr id="tr{{company.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                        <td class="rowTd" data-title="'ID'" sortable="'id'">{{company.id}}</td>
-                                        <td class="rowTd" data-title="'Company'" sortable="'companyName'">{{company.companyName}}</td>
-                                        <td class="rowTd" data-title="'HQ Location'" sortable="'ln'">{{company.hqAddressCity}}, {{company.hqAddressState}}</td>
-                                        <td class="rowTd" data-title="'Industry'" sortable="'industry'">{{company.industry}}</td>
-                                        <td class="rowTd" data-title="'Enroll Date'" sortable="'joinDate'">{{company.joinDate}}</td>
-                                        <td class="rowTd" data-title="'End Date'" sortable="'endDate'">{{company.endDate}}</td>
+                                        <td class="rowTd" data-title="'ID'" sortable="'id'">{{location.id}}</td>
+                                        <td class="rowTd" data-title="'Company'" sortable="'companyName'">{{location.locationNumber}}</td>
+                                        <td class="rowTd" data-title="'City'" sortable="'locationAddressCity'">{{location.locationAddressCity}}</td>
+                                        <td class="rowTd" data-title="'State'" sortable="'locationAddressState'">{{location.locationAddressState}}</td>
+                                        <td class="rowTd" data-title="'Phone Number'" sortable="'phoneNumber'">{{location.phoneNumber}}</td>
+                                        <td class="rowTd" data-title="'Enroll Date'" sortable="'createDate'">{{location.createDate}}</td>
+                                        <td class="rowTd" data-title="'End Date'" sortable="'endDate'">{{location.endDate}}</td>
                                         <td class="rowTd">
                                             <div class="pull-right margin-right-10">
                                               <button class="btn btn-default btn-o btn-sm" ui-sref="app.admin.companies.companyprofile"><i class="fa fa-list-alt"></i></button>
@@ -53,8 +44,8 @@
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
+                
+            
         </div>
     </div>
 </div>

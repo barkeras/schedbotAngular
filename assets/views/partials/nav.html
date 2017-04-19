@@ -15,8 +15,8 @@
             </div>
         </a>
     </li>
-    <li ui-sref-active="active">
-        <a ui-sref="app.admin.companies">
+    <li ng-class="{'active open':$state.includes('app.admin.companies')}">
+        <a ui-sref="app.admin.companies.browse">
             <div class="item-content">
                 <div class="item-media">
                     <i class="fa fa-building-o"></i>
